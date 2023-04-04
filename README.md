@@ -1,31 +1,31 @@
-##meet
+# meet
 ##Table of Contents:
-*[Overview](#overview)
-*[Links](#links)
-*[Process](#process)
-*[Technologies Used](#technologies_used)
-*[Dependencies](#dependencies)
-*[API](#api)
-*[Features](#features)
-*[Credits](#credits)
+* [Overview](#overview)
+* [Links](#links)
+* [Process](#process)
+* [Technologies Used](#technologies_used)
+* [Dependencies](#dependencies)
+* [API](#api)
+* [Features](#features)
+* [Credits](#credits)
 
-##Overview-
+## Overview-
 meet is a serverless and Progressive web application which will allow users to find events within certain cities. 
 The serverless function will allow user use the app without connection, ...
-##Links-
-hosted in Github <a>pages</a>
-##Process-
+## Links-
+hosted in Github [page](https://HerRA17.github.io/meet)
+## Process-
 TDD technique
-##Technologies Used-
-<b>Frontend</b>
+## Technologies Used-
+**Frontend**
 Javascript/React
-<b>Backend</b>
+**Backend**
 OAuth2 authentication flow
 AWS labmda
 
-##Dependencies-
+## Dependencies-
 axios
-##API-
+## API-
 Google Calendar API
-##Features-
-##Credits-
+## Features-
+## Credits-
