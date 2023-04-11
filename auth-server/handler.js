@@ -2,7 +2,17 @@ const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 const calendar = google.calendar("v3");
 
+/**
+ * SCOPES allows you to set access levels; this is set to read only for now because you don't have access rights to
+ * update the calendar yourself. For more info, check out the SCOPES documentation at this link: https://developers.google.com/identity/protocols/oauth2/scopes
+ */
+
 const SCOPES = ["https://googleapis.com/auth/calendar.readonly"];
+
+/** 
+ * Credentials are values required to get access to your calendar. 
+ * meaning the values are in the config.json file 
+ */ 
 
 const credentials =  {
   client_id: process.env.CLIENT_ID,
@@ -21,47 +31,22 @@ const oAuth2Client = new google.auth.OAuth2(
   client_secret,
   redirect_uris[0]
 );
-
+/**
+ * OAuth process generates a URL so users can log in with
+ * Google and be authorized to see the calendar events data. After logging in, they’ll receive a code
+ * as a URL parameter.
+ * 
+ */
 module.exports.getAuthURL = async () => {
+  /**
+   * Any scopes passed must be enabled in the
+   * "OAuth consent screen" 
+   * scopes are the ones users will see when the consent screen is displayed to them.
+   */
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
   });
-
-module.exports.getAccessToken = async(event) => {
-  const oAuth2Client = new google.auth.OAuth2(
-    client_id,
-    client_secret,
-    redirect_uris[0]
-  );
-  const code = decodeURIComponent(`${event.pathParameters.code}`);
-
-  return new Promise((resolve, reject) => {
-    oAuth2Client.getToken(code, (err, token) => {
-      if(err) {
-        return reject(err);
-      }
-      return resolve(token);
-    });
-  })
-   .then((token) => {
-      return {
-        statusCode: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
-        },
-        body: JSON.stringify(token),
-      };
-    })
-     .catch((err) => {
-        console.error(err);
-        return {
-          statusCode: 500,
-          body: JSON.stringify(err),
-        };
-      });
-};
 
   return {
     statusCode: 200,
@@ -69,8 +54,96 @@ module.exports.getAccessToken = async(event) => {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": true,
     },
-    body: {
+    body: JSON.stringify({
       authUrl: authUrl,
-    },
-  };
+    }),
+  }
 };
+
+// module.exports.getAccessToken = async(event) => {
+//   const oAuth2Client = new google.auth.OAuth2(
+//     client_id,
+//     client_secret,
+//     redirect_uris[0]
+//   );
+//   // decode authorization  code extracted from URL query
+//   const code = decodeURIComponent(`${event.pathParameters.code}`);
+
+//   return new Promise((resolve, reject) => {
+//     oAuth2Client.getToken(code, (err, token) => {
+//       if(err) {
+//         return reject(err);
+//       }
+//       return resolve(token);
+//     });
+//   })
+//    .then((token) => {
+//       return {
+//         statusCode: 200,
+//         headers: {
+//           "Access-Control-Allow-Origin": "*",
+//           "Access-Control-Allow-Credentials": true,
+//         },
+//         body: JSON.stringify(token),
+//       };
+//     })
+//      .catch((err) => {
+//       // Handle error
+//         console.error(err);
+//         return {
+//           statusCode: 500,
+//           body: JSON.stringify(err),
+//         };
+//       });
+// };
+
+// module.exports.getCalendarEvents = event => {
+
+//   const oAuth2Client = new google.auth.OAuth2(
+//     client_id,
+//     client_secret,
+//     redirect_uris[0]
+//   );
+//   // decode authorization  code extracted from URL query
+//   const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+//     oAuth2Client.setCredentials({ access_token });
+
+//   return new Promise((resolve, reject) => {
+//     calendar.events.list(
+//       {
+//         calendarId: calendar_id,
+//         auth: oAuth2Client,
+//         timeMin: new Date().toISOString(),
+//         singleEvents: true,
+//         orderBy: "startTime",
+//       },
+//       (error, response) => {
+//         if (error) {
+//           reject(error);
+//         } else {
+//           resolve(response);
+//         }
+//       }
+//     );
+//   })
+//   .then( results => {
+//     return {
+//       statusCode: 200,
+//       headers: {
+//         "Access-Control-Allow-Origin": "*",
+//       },
+//       body: JSON.stringify({ events: results.data.items })
+//     }; 
+//    })
+//    .catch((err) => {
+//     // Handle error
+//       console.error(err);
+//       return {
+//         statusCode: 500,
+//         headers: {
+//           "Access-Control-Allow-Origin": "*",
+//         },
+//         body: JSON.stringify(err),
+//       };
+//     });
+// }
