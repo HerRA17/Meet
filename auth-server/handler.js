@@ -54,48 +54,48 @@ module.exports.getAuthURL = async () => {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": true,
     },
-    body: JSON.stringify({
+    body: {
       authUrl: authUrl,
-    }),
-  }
+    },
+  };
 };
 
-// module.exports.getAccessToken = async(event) => {
-//   const oAuth2Client = new google.auth.OAuth2(
-//     client_id,
-//     client_secret,
-//     redirect_uris[0]
-//   );
-//   // decode authorization  code extracted from URL query
-//   const code = decodeURIComponent(`${event.pathParameters.code}`);
+module.exports.getAccessToken = async(event) => {
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+  // decode authorization  code extracted from URL query
+  const code = decodeURIComponent(`${event.pathParameters.code}`);
 
-//   return new Promise((resolve, reject) => {
-//     oAuth2Client.getToken(code, (err, token) => {
-//       if(err) {
-//         return reject(err);
-//       }
-//       return resolve(token);
-//     });
-//   })
-//    .then((token) => {
-//       return {
-//         statusCode: 200,
-//         headers: {
-//           "Access-Control-Allow-Origin": "*",
-//           "Access-Control-Allow-Credentials": true,
-//         },
-//         body: JSON.stringify(token),
-//       };
-//     })
-//      .catch((err) => {
-//       // Handle error
-//         console.error(err);
-//         return {
-//           statusCode: 500,
-//           body: JSON.stringify(err),
-//         };
-//       });
-// };
+  return new Promise((resolve, reject) => {
+    oAuth2Client.getToken(code, (err, token) => {
+      if(err) {
+        return reject(err);
+      }
+      return resolve(token);
+    });
+  })
+   .then((token) => {
+      return {
+        statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
+        body: JSON.stringify(token),
+      };
+    })
+     .catch((err) => {
+      // Handle error
+        console.error(err);
+        return {
+          statusCode: 500,
+          body: JSON.stringify(err),
+        };
+      });
+};
 
 // module.exports.getCalendarEvents = event => {
 
