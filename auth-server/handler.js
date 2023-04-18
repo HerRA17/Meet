@@ -7,7 +7,7 @@ const calendar = google.calendar("v3");
  * update the calendar yourself. For more info, check out the SCOPES documentation at this link: https://developers.google.com/identity/protocols/oauth2/scopes
  */
 
-const SCOPES = ["https://googleapis.com/auth/calendar.readonly"];
+const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
 /** 
  * Credentials are values required to get access to your calendar. 
@@ -131,6 +131,7 @@ module.exports.getAccessToken = async(event) => {
 //       statusCode: 200,
 //       headers: {
 //         "Access-Control-Allow-Origin": "*",
+//         "Access-Control-Allow-Credentials": true,
 //       },
 //       body: JSON.stringify({ events: results.data.items })
 //     }; 
@@ -142,6 +143,7 @@ module.exports.getAccessToken = async(event) => {
 //         statusCode: 500,
 //         headers: {
 //           "Access-Control-Allow-Origin": "*",
+//            "Access-Control-Allow-Credentials": true,
 //         },
 //         body: JSON.stringify(err),
 //       };
