@@ -87,14 +87,15 @@
        return respones.json();
        })
        .then(function (json) {
-       accesssTokenElement.innerText = JSON.stringify(json);
+        accessTokenElement.innerText = JSON.stringify(json);
        });
      };
 
             // Test3 
             const getEvents = document.getElementById("getEvents");
             const events = document.getElementById("events");
-            const getCalendarEvents = "https://b3pe6tfdal.execute-api.eu-central-1.amazonaws.com/dev/api/get-events";
+            const getCalendarEvents = 
+                "https://b3pe6tfdal.execute-api.eu-central-1.amazonaws.com/dev/api/get-events";
 
             getEvents.onclick = function () {
               const { access_token } = JSON.parse(accessTokenElement.innerText);
@@ -107,6 +108,7 @@
                   events.innerText = JSON.stringify(json, null, 2);
                 });
             }; 
-        </script>
-    </body>
+
+    </script>
+  </body>
 </html>

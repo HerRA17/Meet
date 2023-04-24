@@ -110,7 +110,7 @@ module.exports.getAccessToken =  event => {
 
     oAuth2Client.setCredentials({ access_token });
 
-   return new Promise( (resolve, reject) => { 
+    return new Promise( (resolve, reject) => { 
 		
       calendar.events.list(
         {
@@ -149,4 +149,4 @@ module.exports.getAccessToken =  event => {
       };
     });
      
-};
+}
