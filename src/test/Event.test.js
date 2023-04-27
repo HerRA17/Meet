@@ -4,31 +4,34 @@ import Event from "../Event";
 import { mockData } from "../MockData";
 
 describe('<Event/> component', () => {
-    // let Event;
-    // beforeAll(() => {
-    //     EventWrapper = shallow(<Event />);
-    // })
+    let EventWrapper;
+    beforeAll(() => {
+        EventWrapper = shallow(<Event />);
+    })
     test('check summary element collapsing by default', () => {
-        const EventWrapper = shallow(<Event  />);
-        expect(Event.find('.summary').prop('text')).toBe(mockData)
+        expect(EventWrapper.find('.summary')).toHaveLength(2)
     });
     
     test('check start datetime element collapsing by default', () => {
-        const EventWrapper = shallow(<Event  />);
-        expect(Event.find('.startdatetime-timezone').prop('text').toBe(mockData))
+        expect(EventWrapper.find('.startdatetime')).toHaveLength(1)
     });
 
     test('check timezone element collapsing by default', () => {
-        const EventWrapper = shallow(<Event  />);
-        expect(Event.find('.summary-location').prop('text').toBe(mockData))
+        expect(EventWrapper.find('.timezone')).toHaveLength(1)
     });
 
-    
-    test('expand an event to see its details', () => {
-        const EventWrapper = shallow(<Event  />);
-        EventWrapper.setState({ false });
-        EventWrapper.('.buttonClick').simulate('click');
-        expect(Event.state('true').toBe(true))
+    test('check summary element collapsing by default', () => {
+        expect(EventWrapper.find('.summary')).toHaveLength(1)
+    });
+
+    test('check location element collapsing by default', () => {
+        expect(EventWrapper.find('.location')).toHaveLength(1)
+    });
+
+    test('expand/hide an event to see its details', () => {
+        EventWrapper.setState('true')
+        EventWrapper.find('.buttonClick').at(0).simulate('click');
+        expect(EventWrapper.state('true').toBe('true'))
     });
 })
 // default- summary, Location, time zone, date time
