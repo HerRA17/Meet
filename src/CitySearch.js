@@ -28,13 +28,13 @@ class CitySearch extends Component {
     }
   render() {
     return (
-      <div className="CitySearch">
+      <div className='CitySearch'>
         <input 
-        type="text"
-        className="city"
+        type='text'
+        className='city'
         value={this.state.query}
         onChange={this.handleInputChanged} />
-        <ul className="suggestions">
+        <ul className='suggestions'>
             {this.state.suggestions.map((suggestion) => (
                 <li 
                 key={suggestion}
