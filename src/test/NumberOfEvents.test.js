@@ -14,8 +14,6 @@ describe('<NumberOfEventsWrapper /> component', () => {
     });
 
     test('test change number of events', () => {
-        NumberOfEventsWrapper.setState({
-            numberOfEvents : '32' })
         const eventObject = { target: {value: '15'}};
         NumberOfEventsWrapper.find('.selectedNumberEvents').simulate('change', eventObject);
         expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe('15');
