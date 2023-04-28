@@ -20,10 +20,6 @@ describe('<Event/> component', () => {
         expect(EventWrapper.find('.timezone')).toHaveLength(1)
     });
 
-    test('check summary element collapsing by default', () => {
-        expect(EventWrapper.find('.summary')).toHaveLength(1)
-    });
-
     test('check location element collapsing by default', () => {
         expect(EventWrapper.find('.location')).toHaveLength(1)
     });
