@@ -1,34 +1,45 @@
 import React, { Component } from "react";
+import { mockData } from "./MockData";
 
 class Event extends Component {
     constructor() {
         super();
-        this.state = { showDetails: false}
-        this.handleDetailClicked = (detail) => {
-            this.setState({
-                query: detail
-            });
+        this.state = { showDetails: false }
+
+        this.handleDetailClicked = () => {
+            this.setState((prevState) => ({
+                showDetails: !prevState.showDetails
+                }))
+            };
         }
-    }
+    
         
 render() {
-    const { event } = this.props; 
-    const startDateTime = new Date(event.start.dateTime);
-    const timeZone = event.start.timeZone;
-    const location = event.location;
-    const { showDetails } = this.state; 
+    // const { event } = this.props; 
+    // const startDateTime = new Date(event.start.dateTime);
+    // const timeZone = event.start.timeZone;
+    // const location = event.location;
+    // const summary = event.summary;
+    
     return (
             <div className="EventDetails">
-                <h1 className="summary" >{event.summary}</h1>
-                <p className="startdatetime-timezone" >Start:{startDateTime}, {timeZone}</p>
-                <p className="summary-location" > @{event.summary} | {location}</p>
+                <h1 className="summary" >This will be summary</h1>
+                <p className="startdatetime" >Start: This will be startDateTime</p>
+                <p className="timezone">This will be timeZone</p>
+                <p className="summary" > This will be summary</p>
+                <p className="location"> This will be location</p>
                 <br/>
-                <h3>About Event:</h3>
-                <a className="">{htmllink}</a>
-                <p className="">{description}</p>
-                <br/><br/>
-                <button className="buttonClick" onClick={() => this.handleDetailClicked(detail)}>Show details</button>
-            </div>
+                {/* {!showDetails && (
+                <>
+                    <h3>About Event:</h3>
+                    <a className="htmlLink">this will be html-link</a>
+                    <p className="description">this will be description</p>
+                </>
+                    )} */}
+                    <br/><br/>
+                <button className="buttonClick" onClick={this.handleDetailClicked()}>Show details</button>
+                
+            </div> 
            );
   }
 }
