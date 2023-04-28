@@ -20,6 +20,7 @@ render() {
             input='number'
              className='selectedNumberEvents'
              value={this.state.numberOfEvents}
+             onChange={this.handleInputChanged}
              placeholder='Enter the amount of events'/>
         </div>
     )
