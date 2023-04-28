@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { mockData } from "./MockData";
 
 class Event extends Component {
     constructor() {
         super();
         this.state = { showDetails: false }
 
-        this.handleDetailClicked = () => {
+        this.handleDetailsClicked = () => {
             this.setState((prevState) => ({
                 showDetails: !prevState.showDetails
                 }))
@@ -37,7 +36,7 @@ render() {
                 </>
                     )} */}
                     <br/><br/>
-                <button className="buttonClick" onClick={this.handleDetailClicked()}>Show details</button>
+                <button className="detailsButton" onClick={this.handleDetailsClicked()}>Show details</button>
                 
             </div> 
            );
