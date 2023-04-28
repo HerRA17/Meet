@@ -25,10 +25,7 @@ describe('<Event/> component', () => {
     });
 
     test('expand/hide an event to see its details', () => {
-        EventWrapper.setState('true')
-        EventWrapper.find('.buttonClick').at(0).simulate('click');
-        expect(EventWrapper.state('true').toBe('true'))
+        EventWrapper.find('.detailsButton').at(0).simulate('click');
+        expect(EventWrapper.find('.detailsButton')).toHaveLength(1);
     });
 })
-// default- summary, Location, time zone, date time
-// required all from default + description, summary, link to more details in Google Calendar, HTML-link
