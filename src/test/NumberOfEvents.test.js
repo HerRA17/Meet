@@ -13,13 +13,15 @@ describe('<NumberOfEventsWrapper /> component', () => {
         expect(NumberOfEventsWrapper.find('.NumberOfEvents')).toHaveLength(1);
     });
 
+    test('test default number of events', () => {
+        expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(32);
+    });
+
     test('test change number of events', () => {
         const eventObject = { target: {value: '15'}};
         NumberOfEventsWrapper.find('.selectedNumberEvents').simulate('change', eventObject);
         expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe('15');
     });
 
-    test('test default number of events', () => {
-        expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe('32');
-    })
+    
 });
