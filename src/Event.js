@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 
 class Event extends Component {
-    constructor() {
-        super();
-        this.state = { showDetails: false }
+    
+    state = { showDetails: false }
 
-        this.handleDetailsClicked = () => {
+        handleDetailsClicked = () => {
             this.setState((prevState) => ({
                 showDetails: !prevState.showDetails
                 }))
             };
-        }
     
-        
 render() {
     // const { event } = this.props; 
     // const startDateTime = new Date(event.start.dateTime);
