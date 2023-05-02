@@ -4,15 +4,18 @@ import EventList from './Eventlist';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
+import './nprogress.css';
 
 class App extends Component {
+  constructor () {
+    super();
   
-  state = {
+  this.state = {
     events: [],
     locations: []
   } 
 
-  updateEvents = (location) => {
+  this.updateEvents = (location) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
       events :
@@ -27,15 +30,16 @@ class App extends Component {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted){
-        this.setState({ events, locations: extractLocations(events) 
-  });
+        this.setState({ events, locations: extractLocations(events) });
       }
-    });
+    })
+    .catch(e => console.error(e))
   }
 
   componentWillUnmount() {
     this.mounted = false;
   }
+}
 
   render() {
     return (
