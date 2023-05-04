@@ -55,16 +55,44 @@ describe ('<App /> integration', () => {
         await CitySearchWrapper.instance().handleItemClicked(selectedCity);
         const allEvents = await getEvents();
         const eventsToShow = allEvents.filter(event => event.location === selectedCity);
-        expect(AppWrapper.state('events')).toEqual(eventsToShow);
+        const shownEvents = eventsToShow.slice(0,32);
+        expect(AppWrapper.state('events')).toEqual(shownEvents);
         AppWrapper.unmount();
     });
 
     test('get list of all events when user selects "See all cities"', async () => {
         const AppWrapper = mount(<App />);
-        const suggestionsItems = AppWrapper.find(CitySearch).find('.suggestion li');
+        const suggestionsItems = AppWrapper.find(CitySearch).find('.suggestions li');
         await suggestionsItems.at(suggestionsItems.length - 1).simulate('click');
         const allEvents = await getEvents();
-        expect(AppWrapper.state('events')).toEqual(allEvents);
+        const shownEvents = allEvents.slice(0,32);
+        expect(AppWrapper.state('events')).toEqual(shownEvents);
         AppWrapper.unmount();
     });
+
+    test('App passes the default "eventNumberResult" state as a prop to NumberOfEvents' , () => {
+        const AppWrapper = mount(<App />);
+        const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+        expect(NumberOfEventsWrapper.prop('eventNumberResult')).toEqual(AppWrapper.state('eventNumberResult'))
+        AppWrapper.unmount();
+    });
+    
+    test('when events state changes number of events changes', () => {
+        const AppWrapper = mount(<App />);
+        const eventNumberResult = AppWrapper.state('eventNumberResult');
+        expect(eventNumberResult).toEqual(AppWrapper.find(NumberOfEvents).props().eventNumberResult);
+        AppWrapper.unmount();
+    });    
+
+    test('get lits of events matching the number of events selected by the user', async () => {
+        const AppWrapper = mount(<App />);
+        const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+        const selectedNumber = Math.floor(Math.random() * 32);
+        const event = {target: { value: selectedNumber } };
+        await NumberOfEventsWrapper.instance().handleItemClicked(event);
+        expect(AppWrapper.state('eventNumberResult')).toEqual(selectedNumber);
+        expect(AppWrapper.state('eventNumberResult')).toEqual(selectedNumber);
+        AppWrapper.unmount();
+    });    
+
 });
