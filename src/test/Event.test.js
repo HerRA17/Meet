@@ -4,12 +4,13 @@ import Event from "../Event";
 import { mockData } from "../MockData";
 
 describe('<Event/> component', () => {
-    let EventWrapper;
+    let EventWrapper, event;
     beforeAll(() => {
-        EventWrapper = shallow(<Event />);
+        event = mockData[0];
+        EventWrapper = shallow(<Event event={event}/>);
     })
     test('check summary element collapsing by default', () => {
-        expect(EventWrapper.find('.summary')).toHaveLength(2)
+        expect(EventWrapper.find('.summary')).toHaveLength(1)
     });
     
     test('check start datetime element collapsing by default', () => {
@@ -25,7 +26,7 @@ describe('<Event/> component', () => {
     });
 
     test('expand/hide an event to see its details', () => {
-        EventWrapper.find('.detailsButton').at(0).simulate('click');
-        expect(EventWrapper.find('.detailsButton')).toHaveLength(1);
+        EventWrapper.find('.detailsButton').simulate('click');
+        expect(EventWrapper.state('showDetails')).toBe(true)
     });
 })
