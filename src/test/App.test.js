@@ -87,9 +87,9 @@ describe ('<App /> integration', () => {
     test('get lits of events matching the number of events selected by the user', async () => {
         const AppWrapper = mount(<App />);
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
-        const selectedNumber = Math.floor(Math.random() * 32);
+        const selectedNumber = Math.floor(Math.random() * mockData.length);
         const event = {target: { value: selectedNumber } };
-        await NumberOfEventsWrapper.instance().handleItemClicked(event);
+        await NumberOfEventsWrapper.find('input', 'num').simulate('change', event);
         expect(AppWrapper.state('eventNumberResult')).toEqual(selectedNumber);
         expect(AppWrapper.state('eventNumberResult')).toEqual(selectedNumber);
         AppWrapper.unmount();
