@@ -30,7 +30,7 @@ render() {
                 </>
                     )}
                     <br/><br/>
-                <button className="detailsButton" onClick={this.handleDetailsClicked()}>Show details</button>
+                <button className="detailsButton" onClick={this.handleDetailsClicked}>Show details</button>
                 
             </div> 
            );
