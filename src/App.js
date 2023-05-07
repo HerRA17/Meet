@@ -74,7 +74,7 @@ class App extends Component {
         this.setState({ events: shownEvents, locations: extractLocations(events) });
       }
     })
-    // .catch(e => console.error(e))
+    .catch(e => console.error(e))
   }
 
   componentWillUnmount() {
@@ -94,7 +94,10 @@ class App extends Component {
       <div className="App">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
         <EventList events={this.state.events}/>
-        <NumberOfEvents eventNumberResult={this.state.eventNumberResult} updateEventNumberResult={this.updateEventNumberResult}
+        <NumberOfEvents 
+        eventNumberResult={this.state.eventNumberResult}
+        updateEventNumberResult={this.updateEventNumberResult}
+        updateEvents={this.updateEvents}
         selectedCity={this.state.selectedCity}/>
       </div>
     );
