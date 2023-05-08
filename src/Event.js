@@ -23,11 +23,11 @@ render() {
                 <p className="location"> {event.location}</p>
                 <br/>
                 {!this.showDetails && (
-                <>
+                <div>
                     <h3>About Event:</h3>
-                    <a className="htmlLink">Click to refer to google{event.htmlLink}</a>
+                    <a className="htmlLink" href={event.htmlLink}>Click here to see details on Google Calendar </a>
                     <p className="description">{event.description}</p>
-                </>
+                </div>
                     )}
                     <br/><br/>
                 <button className="detailsButton" onClick={this.handleDetailsClicked}>Show details</button>
