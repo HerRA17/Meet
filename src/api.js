@@ -25,7 +25,7 @@ const getAccessToken = async () => {
     return code && getToken(code);
   }
   return accessToken;
-}
+};
 
 // Access Token Found in Local Storage
 const checkToken = async (accessToken) => {
@@ -33,6 +33,32 @@ const checkToken = async (accessToken) => {
   .then((res) => res.json())
   .catch((error) => error.json());
   return result;
+};
+
+const getToken = async (code) => {
+  try {
+      const encodeCode = encodeURIComponent(code);
+
+      const response = await fetch( 'https://b3pe6tfdal.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode);
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const { access_token } = await response.json();
+      access_token && localStorage.setItem("access_token", access_token);
+      return access_token;
+  } catch(error) {
+      error.json();
+  }
+}
+
+const removeQuery = () => {
+  if (window.history.pushState && window.location.pathname) {
+    var newurl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+    window.history.pushState('', '', newurl);
+  } else {
+    newurl = window.location.protocol + '//' + window.location.host;
+    window.history.pushState('', '', newurl)
+  }
 };
 
 export const getEvents = async () => {
@@ -59,15 +85,3 @@ export const getEvents = async () => {
   }
   
 };
-
-  const removeQuery = () => {
-    if (window.history.pushState && window.location.pathname) {
-      var newurl = window.location.protocol + '//' + window.location.host + window.location.pathname;
-      window.history.pushState('', '', newurl);
-    } else {
-      newurl = window.location.protocol + '//' + window.location.host;
-      window.history.pushState('', '', newurl)
-    }
-  };
-
-  
