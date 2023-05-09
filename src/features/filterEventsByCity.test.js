@@ -1,42 +1,42 @@
-import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import App from '../App';
 import { mockData } from '../MockData';
 import CitySearch from '../CitySearch';
 import { extractLocations } from '../api';
+import { loadFeature, defineFeature } from 'jest-cucumber';
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 const locations = extractLocations(mockData)
 
-defineFeature(feature, test => {
-    test("When user hasn’t searched for a city, show upcoming events from all cities.", ({ given, when, then }) => {
-      given("user hasn’t searched for any city", () => {
+defineFeature(feature, test => { 
+    test('When user has not searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
+      given('user has not searched for any city', () => {
         
       });
   
-        let AppWrapper;
+      let AppWrapper;
       when('the user opens the app', () => {
         AppWrapper = mount(<App />);
         });
   
       then('the user should see the list of upcoming events.', () => {
         AppWrapper.update();
-      expect(AppWrapper.find('.event').hostNodes()).toHaveLength(mockData.length); //.toHaveLength(mockData.length); or .hostNodes()).toHaveLength(mockData.length);
+        expect(AppWrapper.find('.event')).toHaveLength(mockData.length); //.toHaveLength(mockData.length); or .hostNodes()).toHaveLength(mockData.length);
       });
     }); 
   
-    test('User should see a list of cities (suggestions) when they search for a city', ({ given, when, then }) => {
-        let CitySearchWrapper;
+    test('User should see a list of suggestions when they search for a city', ({ given, when, then }) => {
+      let CitySearchWrapper;
       given('the main page is open', () => {
-        CitySearchWrapper = shallow(<CitySearch updateEvents={() => {}} locations={locations} />);
+        CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => {}} />);
       });
   
       when('the user starts typing in the city textbox', () => {
         CitySearchWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } });
       });
   
-      then("the user should receive a list of cities (suggestions) that match what they’ve typed", () => {
+      then('the user should receive a list of cities (suggestions) that match what they’ve typed', () => {
         expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(2);
       });
     });
