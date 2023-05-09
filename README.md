@@ -21,6 +21,7 @@ TDD technique
 **Frontend**
 Javascript/React
 Hosted in Github Pages
+
 **Backend**
 Node/Express as Lambda functions (FaaS)
 hosted on AWS
