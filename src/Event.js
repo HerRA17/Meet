@@ -29,9 +29,8 @@ render() {
                     <p className="description">{event.description}</p>
                 </div>
                     )}
-                    <br/><br/>
+                    <br/>
                 <button className="detailsButton" onClick={this.handleDetailsClicked}>Show details</button>
-                
             </div> 
            );
   }
