@@ -15,6 +15,7 @@ class Event extends Component {
 
 render() {
     const { event } = this.props; 
+    const { showDetails } = this.state;
     return (
             <div className="EventDetails">
                 <h1 className="summary" >{event.summary} </h1>
@@ -22,7 +23,7 @@ render() {
                 <p className="timezone">{event.timeZone}</p>
                 <p className="location"> {event.location}</p>
                 <br/>
-                {!this.showDetails && (
+                {!showDetails && (
                 <div>
                     <h3>About Event:</h3>
                     <a className="htmlLink" href={event.htmlLink}>Click here to see details on Google Calendar </a>
@@ -30,7 +31,9 @@ render() {
                 </div>
                     )}
                     <br/>
-                <button className="detailsButton" onClick={this.handleDetailsClicked}>Show details</button>
+                <button className="detailsButton" onClick={this.handleDetailsClicked}>
+                    {showDetails ? 'Show Details' : 'Hide Details'}
+                </button>
             </div> 
            );
   }
