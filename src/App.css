@@ -1,8 +1,10 @@
 .App {
   text-align: center;
   background-color: antiquewhite;
-  color: blue;
+  color: #616161;
   padding: 2% 5%;
+  flex-grow: 2;
+  flex-shrink: 1;
 }
 
 .App * {
@@ -48,6 +50,10 @@ input[type="number"] {
   max-width: 300px;
   margin: auto;
   position: relative;
+}
+
+.description {
+  align-items:center;
 }
 
 .suggestions {
