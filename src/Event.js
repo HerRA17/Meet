@@ -23,7 +23,7 @@ render() {
                 <p className="timezone">{event.timeZone}</p>
                 <p className="location"> {event.location}</p>
                 <br/>
-                {!showDetails && (
+                {showDetails && (
                 <div>
                     <h3>About Event:</h3>
                     <a className="htmlLink" href={event.htmlLink}>Click here to see details on Google Calendar </a>
