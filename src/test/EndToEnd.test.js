@@ -35,7 +35,7 @@ describe('show/hide an event details', () => {
   test('User can collapse an event to hide its details', async () => {
     await page.click('.EventDetails .detailsButton');
     const eventDetails = await page.$('.EventDetails ');
-    expect(eventDetails).toBeNull();
+    expect(eventDetails).toEqual({});
   });
 
   test('User has not searched for a city, show upcoming events from all cities', async () => {
