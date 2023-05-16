@@ -19,7 +19,6 @@ class NumberOfEvents extends Component{
         this.props.updateEvents(this.props.selectedCity, value)    
         } else {
             this.setState({
-                eventNumberResult: undefined,
                 infoText: 'The number of event you chosed is not valid. Please use a value between 1 and 32.'
             })
         }
