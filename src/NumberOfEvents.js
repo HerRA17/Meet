@@ -14,7 +14,7 @@ class NumberOfEvents extends Component{
             eventNumberResult: value,
         })
         this.props.updateEvents(this.props.selectedCity, value)    
-    }
+        }
     }
 
 render() {
