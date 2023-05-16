@@ -49,7 +49,6 @@ input[type="number"] {
   flex-basis: 300px;
   max-width: 300px;
   margin: auto;
-  position: relative;
 }
 
 .description {
@@ -92,9 +91,9 @@ input[type="number"] {
   position: relative;
 }
 
-.details-btn {
+.detailsButton {
   position: absolute;
-  right: 5px;
+  left: 5px;
   bottom: 5px;
   padding: 5px 8px;
   border-radius: 4px;
@@ -121,7 +120,7 @@ input[type="number"] {
   overflow-x: hidden;
 }
 
-.numberOfEvents {
+.NumberOfEvents {
   width: 200px;
   margin: 20px auto;
   text-align: center;
