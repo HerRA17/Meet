@@ -9,19 +9,20 @@ import Event from '../Event';
 const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
 
 defineFeature(feature, test => {
+
     test('An event element is collapse by default.', ({ given, when, then }) => {
-        let AppWrapper, EventWrapper, CitySearchWrapper;
+        let AppWrapper;
         beforeEach(() => {
-            AppWrapper = mount(<App/>);
+            const AppWrapper = mount(<App />);
             EventWrapper = AppWrapper.find(Event);
-            CitySearchWrapper = AppWrapper.find(CitySearch);
+            CitySearchtWrapper = AppWrapper.find(CitySearch);
         })
         given('user has searched for a city', () => {
-            CitySearchWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } });
+            CitySearchtWrapper.find('.CitySearch').simulate('change');
         });
 
         when('the events are listed', () => {
-            ('suggestions li')
+            // AppWrapper.find('.EventDetails');
         });
 
         then('the event details should be collapsed by default', () => {
@@ -31,7 +32,7 @@ defineFeature(feature, test => {
 
     test('User can expand an event to see its details.', ({ given, when, then }) => {
         given('the city-search list is displayed', () => {
-
+            CitySearchtWrapper.find('.CitySearch');
         });
 
         when('a user clicks on the details button', () => {
@@ -40,13 +41,13 @@ defineFeature(feature, test => {
         });
 
         then('the event details should expand displaying its details', () => {
-
+            expect(EventWrapper.find('showDetails')).toBe(true);
         });
     });
 
     test('User can collapse an event to hide its details.', ({ given, when, then }) => {
         given('an event details are expanded', () => {
-
+            EventWrapper.find('showDetails').toBe(true);
         });
 
         when('user clicks collapse button', () => {
@@ -54,7 +55,7 @@ defineFeature(feature, test => {
         });
 
         then('the details should collapse within the specific event, hiding its details', () => {
-            expect(EventWrapper.find('')).toHaveLength(mockData);
+            expect(EventWrapper.find('showDetails')).toBe(false);
         });
     });
 });
