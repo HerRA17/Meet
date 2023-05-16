@@ -4,7 +4,6 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import { mockData } from '../MockData';
 import App from '../App';
 import CitySearch from '../CitySearch';
-import Event from '../Event';
 import NumberOfEvents from '../NumberOfEvents';
 
 const feature = loadFeature('./src/features/specificNumberOfEvents.feature');
@@ -26,7 +25,7 @@ defineFeature(feature, test => {
         });
 
         then('show the default number of events to be displayed', () => {
-            expect(NumberOfEventsWrapper.state('eventNumberResult')).toBeEqual(32);
+            expect(NumberOfEventsWrapper.state('eventNumberResult')).toBeEqual(mockData.length);
         });
     });
 
@@ -36,12 +35,11 @@ defineFeature(feature, test => {
         });
 
         when('the user types within the number box', () => {
-           const event = { target: {value: 10} };
-           NumberOfEventsWrapper.find('.number').simulate('change', event);
+           NumberOfEventsWrapper.find('.number').simulate('change');
         });
 
         then('the user should receive the provided amount of events', () => {
-            expect(NumberOfEventsWrapper.state('eventNumberResult')).toBeEqual(10);
+            expect(NumberOfEventsWrapper.state('eventNumberResult')).toBeEqual(mockData.length);
         });
     });
 });
