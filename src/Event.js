@@ -24,7 +24,7 @@ render() {
                 <p className="location"> {event.location}</p>
                 <br/>
                 {showDetails && (
-                <div>
+                <div className="hiddenDetails">
                     <h3>About Event:</h3>
                     <a className="htmlLink" href={event.htmlLink}>Click here to see details on Google Calendar </a>
                     <p className="description">{event.description}</p>
