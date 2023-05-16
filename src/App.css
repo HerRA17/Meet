@@ -88,11 +88,28 @@ input[type="number"] {
   text-align: left;
   border: 1px solid #ccc;
   border-radius: 4px;
-  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  max-width: 90%;
+  height: auto;
 }
 
+.htmlLink {
+  color: #494949;
+}
+
+/* .htmlLink:hover {
+  color: #494949;
+  }
+
+  .htmlLink {
+    color: #494949;
+    } */
+
 .detailsButton {
-  position: absolute;
+  display: flex;
+  position: relative;
   left: 5px;
   bottom: 5px;
   padding: 5px 8px;

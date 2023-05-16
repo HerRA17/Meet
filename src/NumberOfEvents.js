@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { ErrorAlert } from './Alert';
+
 class NumberOfEvents extends Component{
     constructor() {
         super();
         this.state = {
-            eventNumberResult: 32
+            eventNumberResult: 32,
+            infoText: ''
         }
     }
 
@@ -14,12 +17,18 @@ class NumberOfEvents extends Component{
             eventNumberResult: value,
         })
         this.props.updateEvents(this.props.selectedCity, value)    
+        } else {
+            this.setState({
+                eventNumberResult: undefined,
+                infoText: 'The number of event you chosed is not valid. Please use a value between 1 and 32.'
+            })
         }
     }
 
 render() {
     return(
         <div className='NumberOfEvents'>
+            <ErrorAlert text={this.state.infoText}/>
             <input 
             input='number'
              className='selectedEventNumberResult'

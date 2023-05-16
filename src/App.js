@@ -5,6 +5,7 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 import './nprogress.css';
+import ThemeProvider from "react-bootstrap/ThemeProvider";
 
 class App extends Component {
   constructor () {
@@ -92,14 +93,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <ThemeProvider breakpoints={["xxl","xl","lg","md","sm","xs"]}
+        minBreakpoint="xs">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
         <NumberOfEvents 
         eventNumberResult={this.state.eventNumberResult}
         updateEventNumberResult={this.updateEventNumberResult}
         updateEvents={this.updateEvents}
         selectedCity={this.state.selectedCity}/>
-        <EventList events={this.state.events}/>
-        
+        <EventList events={this.state.events} md={6}/>
+        </ThemeProvider>
       </div>
     );
   }
