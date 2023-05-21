@@ -32,7 +32,7 @@ defineFeature(feature, test => {
 
     test('User can expand an event to see its details.', ({ given, when, then }) => {
         given('the city-search list is displayed', () => {
-            CitySearchtWrapper.find('.CitySearch');
+            CitySearchtWrapper.find('.CitySearch'); 
         });
 
         when('a user clicks on the details button', () => {

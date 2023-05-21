@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import './App.css';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
-import NumberOfEvents from './NumberOfEvents';
-import { extractLocations, getEvents } from './api';
-import './nprogress.css';
+import React, { Component } from "react";
+import "./App.css";
+import WelcomeScreen from "./WelcomeScreen";
+import EventList from "./EventList";
+import CitySearch from "./CitySearch";
+import NumberOfEvents from "./NumberOfEvents";
+import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
+import "./nprogress.css";
 import ThemeProvider from "react-bootstrap/ThemeProvider";
 
 class App extends Component {
@@ -15,7 +16,8 @@ class App extends Component {
     events: [],
     locations: [],
     eventNumberResult: 32,
-    selectedCity: null
+    selectedCity: null,
+    showWelcomeScreen: undefined
   } 
 }
 
@@ -67,15 +69,27 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
-    getEvents(this.state.eventNumberResult).then((events) => {
-      if (this.mounted){
-        const shownEvents = events.slice(this.state.eventCount)
-        this.setState({ events: shownEvents, locations: extractLocations(events) });
-      }
-    })
-    .catch(e => console.error(e))
+    const accessToken = localStorage.getItem("access_token");
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({ events, locations: extractLocations(events) })
+        }
+      });
+    }
+    // getEvents(this.state.eventNumberResult).then((events) => {
+    //   if (this.mounted){
+    //     const shownEvents = events.slice(this.state.eventCount)
+    //     this.setState({ events: shownEvents, locations: extractLocations(events) });
+    //   }
+    // })
+    // .catch(e => console.error(e))
   }
 
   componentWillUnmount() {
@@ -91,17 +105,23 @@ class App extends Component {
 
 
   render() {
+    if(this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
         <ThemeProvider breakpoints={["xxl","xl","lg","md","sm","xs"]}
         minBreakpoint="xs">
+        <h1>meet App</h1>
+        <br/>
+        <h3>City search:</h3>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
+        <h3>Number of Events:</h3>
         <NumberOfEvents 
         eventNumberResult={this.state.eventNumberResult}
         updateEventNumberResult={this.updateEventNumberResult}
         updateEvents={this.updateEvents}
         selectedCity={this.state.selectedCity}/>
         <EventList events={this.state.events} md={6}/>
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }}/>
         </ThemeProvider>
       </div>
     );

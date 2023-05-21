@@ -9,7 +9,7 @@ export const extractLocations = (events) => {
   };
 
 // No Access Token Found in Local Storage
-const getAccessToken = async () => {
+export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
   const tokenCheck = accessToken && (await checkToken(accessToken));
 
@@ -28,7 +28,7 @@ const getAccessToken = async () => {
 };
 
 // Access Token Found in Local Storage
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
   const result = await fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`)
   .then((res) => res.json())
   .catch((error) => error.json());
@@ -67,6 +67,12 @@ export const getEvents = async () => {
   if (window.location.href.startsWith('http://localhost')) {
     NProgress.done();
     return mockData;
+  }
+
+  if(!navigator.onLine) {
+    const data =  localStorage.getItem('lastEvents');
+    NProgress.done();
+    return data?JSON.parse(data).events:[];;
   }
 
   const token = await getAccessToken();

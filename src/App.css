@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: antiquewhite;
+  background-color: #FAEBD7;
   color: #616161;
   padding: 2% 5%;
   flex-grow: 2;
@@ -32,11 +32,12 @@ input[type="number"] {
   padding: 8px 6px 8px 10px;
   border-radius: 4px;
   outline: none;
-  border: 1px solid #ccc;
+  border: 1px solid #616161;
   font-size: 14px;
   line-height: 20px;
   align-self: center;
   height: 38px;
+  background-color: transparent !important;
 }
 
 .city {
@@ -49,6 +50,7 @@ input[type="number"] {
   flex-basis: 300px;
   max-width: 300px;
   margin: auto;
+  padding: 10px auto 20px auto;
 }
 
 .description {
@@ -84,26 +86,22 @@ input[type="number"] {
 
 .EventDetails {
   padding: 10px 10px 35px;
-  margin-bottom: 10px;
-  text-align: left;
+  margin: 10px 0px;
+  text-align: center;
   border: 1px solid #ccc;
   border-radius: 4px;
   display: flex;
   flex-flow: column nowrap;
-  align-items: flex-start;
-  max-width: 90%;
+  align-items: center;
+  max-width: 100%;
   height: auto;
 }
 
 .htmlLink {
-  color: #494949;
+  color: #3200A8;
 }
 
-/* .htmlLink:hover {
-  color: #494949;
-  }
-
-  .htmlLink {
+/*.htmlLink {
     color: #494949;
     } */
 
@@ -114,8 +112,11 @@ input[type="number"] {
   bottom: 5px;
   padding: 5px 8px;
   border-radius: 4px;
+  border-color: #3200A8;
   outline: none;
   cursor: pointer;
+  background-color: transparent;
+  color: #3200A8;
 }
 
 .name {
@@ -139,7 +140,7 @@ input[type="number"] {
 
 .NumberOfEvents {
   width: 200px;
-  margin: 20px auto;
+  margin: 10px auto 20px auto;
   text-align: center;
 }
 
@@ -151,10 +152,6 @@ input[type="number"] {
   font-family: sans-serif;
 }
 
-.Alert {
-  position: fixed;
-  top: 20px;
-}
 
 .data-vis-wrapper {
   display: flex;
