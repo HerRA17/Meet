@@ -98,13 +98,6 @@ class App extends Component {
         }  
       });
     }
-    // getEvents(this.state.eventNumberResult).then((events) => {
-    //   if (this.mounted){
-    //     const shownEvents = events.slice(this.state.eventCount)
-    //     this.setState({ events: shownEvents, locations: extractLocations(events) });
-    //   }
-    // })
-    // .catch(e => console.error(e))
   }
 
   componentWillUnmount() {
