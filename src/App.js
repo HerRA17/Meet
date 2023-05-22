@@ -4,6 +4,7 @@ import WelcomeScreen from "./WelcomeScreen";
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
+import { WarningAlert } from "./Alert";
 import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 import "./nprogress.css";
 import ThemeProvider from "react-bootstrap/ThemeProvider";
@@ -17,6 +18,7 @@ class App extends Component {
     locations: [],
     eventNumberResult: 32,
     selectedCity: null,
+    infoText:'',
     showWelcomeScreen: undefined
   } 
 }
@@ -69,10 +71,17 @@ class App extends Component {
     }
   }
 
+  
+
   async componentDidMount() {
     this.mounted = true;
     const accessToken = localStorage.getItem("access_token");
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    let isTokenValid;
+    if (accessToken && !navigator.onLine) {
+      isTokenValid = true;
+    } else {
+      isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    }
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
@@ -81,6 +90,12 @@ class App extends Component {
         if (this.mounted) {
           this.setState({ events, locations: extractLocations(events) })
         }
+
+    if (navigator.onLine === false) {
+          this.setState({ infoText: "You are offline! The data was loaded from the cache."});
+        } else {
+          this.setState({ infoText: "" });
+        }  
       });
     }
     // getEvents(this.state.eventNumberResult).then((events) => {
