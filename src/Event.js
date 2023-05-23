@@ -19,7 +19,7 @@ render() {
     return (
             <div className="EventDetails">
                 <h1 className="summary" >{event.summary} </h1>
-                <p className="startdatetime" >Start: {new Date(event.start.dateTime).toISOString()}</p>
+                <p className="startdatetime" >Start: {new Date(event.start.dateTime).toLocaleString()}</p>
                 <p className="timezone">{event.timeZone}</p>
                 <p className="location"> {event.location}</p>
                 <br/>
