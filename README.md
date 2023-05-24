@@ -29,12 +29,12 @@ Here are the app key features:
 ## User Stories-
 Key features correspond to the following user stories:
 
-1 As a user, I would like to be able to filter events by city, so I can view the list of events that take place in a city.
-2 As a user, I would like to be able to show/hide the event details, so I can see more/less details abount an event.
-3 As a user, I would like to specify the number of events I can view in the app, so I can see more/less events in the event list at once.
-4 As a user, I would like to be able to use the app when offline, so I see view the events I viewed the last time I was online
-5 As a user, I would like to be able to add the app shortcut to the home screen, so I can open the app faster.
-6 As a user, I would like to be able to see a chart showing the upcoming events in each city, so I know which events are organised in each city
+1. As a user, I would like to be able to filter events by city, so I can view the list of events that take place in a city.
+2. As a user, I would like to be able to show/hide the event details, so I can see more/less details abount an event.
+3. As a user, I would like to specify the number of events I can view in the app, so I can see more/less events in the event list at once.
+4. As a user, I would like to be able to use the app when offline, so I see view the events I viewed the last time I was online
+5. As a user, I would like to be able to add the app shortcut to the home screen, so I can open the app faster.
+6. As a user, I would like to be able to see a chart showing the upcoming events in each city, so I know which events are organised in each city
 
 ## Scanarios-
 ### Feature 1 - Filter events by city
