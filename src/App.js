@@ -9,7 +9,7 @@ import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import EventGenre from "./EventGenre";
 import "./nprogress.css";
-// import ThemeProvider from "react-bootstrap/ThemeProvider";
+import ThemeProvider from "react-bootstrap/ThemeProvider";
 
 class App extends Component {
   constructor () {
@@ -127,8 +127,8 @@ class App extends Component {
     if(this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
-        {/* <ThemeProvider breakpoints={["xxl","xl","lg","md","sm","xs"]}
-         minBreakpoint="xs"> */}
+        <ThemeProvider breakpoints={["xxl","xl","lg","md","sm","xs"]}
+         minBreakpoint="xs">
         <h1>meet App</h1>
         <br/> 
         <WarningAlert text={this.infoText}/>
@@ -162,8 +162,8 @@ class App extends Component {
               margin={{top: 20, right: 20, bottom: 20, left: 20, }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="city" type="category" name="city" />
-              <YAxis dataKey="number" type="number" name="number of events" allowDecimal={false} />
+              <XAxis dataKey="name" type="category" name="name" />
+              <YAxis dataKey="value" type="number" name="value" allowDecimal={false} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
               <Scatter data={this.getData()} fill="#8884d8" />
             </ScatterChart>
@@ -171,7 +171,7 @@ class App extends Component {
         </div>
         <EventList events={this.state.events} md={6}/>
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }}/>
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
       </div>
     );
   }
