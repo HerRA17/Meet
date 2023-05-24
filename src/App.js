@@ -6,8 +6,10 @@ import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { WarningAlert } from "./Alert";
 import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import EventGenre from "./EventGenre";
 import "./nprogress.css";
-import ThemeProvider from "react-bootstrap/ThemeProvider";
+// import ThemeProvider from "react-bootstrap/ThemeProvider";
 
 class App extends Component {
   constructor () {
@@ -71,7 +73,15 @@ class App extends Component {
     }
   }
 
-  
+  getData = () =>{
+    const {locations, events} = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return {city, number};
+    });
+    return data;
+  };
 
   async componentDidMount() {
     this.mounted = true;
@@ -113,12 +123,15 @@ class App extends Component {
 
 
   render() {
+    const { locations, eventNumberResult, events } = this.state;
     if(this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
-        <ThemeProvider breakpoints={["xxl","xl","lg","md","sm","xs"]}
-        minBreakpoint="xs">
+        {/* <ThemeProvider breakpoints={["xxl","xl","lg","md","sm","xs"]}
+         minBreakpoint="xs"> */}
         <h1>meet App</h1>
+        <br/> 
+        <WarningAlert text={this.infoText}/>
         <br/>
         <h3>City search:</h3>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
@@ -128,9 +141,37 @@ class App extends Component {
         updateEventNumberResult={this.updateEventNumberResult}
         updateEvents={this.updateEvents}
         selectedCity={this.state.selectedCity}/>
+        <br/>
+        <h3>Events in the city</h3>
+        <ResponsiveContainer height={400}>
+          <ScatterChart
+            margin={{top: 20, right: 20, bottom: 10, left: 10, }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="city" type="category" name="city" />
+            <YAxis dataKey="number" type="category" name="number of events" allowDecimal={false} />
+            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+            <Scatter data={this.getData()} fill="#8884d8" />
+            <Scatter data={this.getData()} fill="#82ca9d" />
+          </ScatterChart>
+        </ResponsiveContainer>
+        <div className="data-vis-wrapper">
+          <EventGenre events={events}/>
+          <ResponsiveContainer height={400}>
+            <ScatterChart
+              margin={{top: 20, right: 20, bottom: 20, left: 20, }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="city" type="category" name="city" />
+              <YAxis dataKey="number" type="number" name="number of events" allowDecimal={false} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+            </ResponsiveContainer>
+        </div>
         <EventList events={this.state.events} md={6}/>
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }}/>
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </div>
     );
   }
