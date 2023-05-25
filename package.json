@@ -10,6 +10,7 @@
     "atatus-spa": "^4.5.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+    "eslint-plugin-react-hooks": "^5.0.0-canary-535c038d1-20230522",
     "nprogress": "^0.2.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.7.4",
