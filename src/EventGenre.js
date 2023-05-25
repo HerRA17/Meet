@@ -1,22 +1,23 @@
 import { render } from 'nprogress';
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer,Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 const EventGenre = ({events}) => {
     const [data, setData] = useState([]);
     
-    const getData = () => {
-      const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
-      const data = genres.map((genre) => {
-          const value = events.filter(({ summary }) => summary.split('').includes(genre)).length
-          return {name: genre , value};
-        })
-        return data;
-    }
-    useEffect(() => {setData(() => getData()); }, [events]);
-
     const Colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#D4ADFC']
 
+    useEffect(() => {setData(() => getData()); }, [events]);
+
+    const getData = () => {
+      const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
+      const data = genres.map((genre, index) => {
+          const value = events.filter(({ summary }) => summary.split('').includes(genre)).length
+          return {name: genre , value, fill:Colors[index]};
+        })
+        return data.filter((entry) => entry.value > 0);
+    }
+   
     const Radian = Math.PI / 180;
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -46,14 +47,16 @@ const EventGenre = ({events}) => {
               cy={200}
               labelLine={false}
               outerRadius={80}
-              fill="#8884d8"
               dataKey="value"
+              nameKey="name"
               label={renderCustomizedLabel}
             >
-           </Pie>
-           {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={Colors[index % Colors.length]} />
+              {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={Colors[index]} />
             ))}
+           </Pie>
+           <Legend verticalAlign="bottom" layout="horizontal"  formatter={(value, entry, index) => <span style={{ color: entry.color }}>{entry.payload.name}</span>}/>
+           <Tooltip />
           </PieChart>
         </ResponsiveContainer>
     );
