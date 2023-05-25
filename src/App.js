@@ -143,6 +143,9 @@ class App extends Component {
         selectedCity={this.state.selectedCity}/>
         <br/>
         <h3>Events in the city</h3>
+        {/* <div className="data-vis-wrapper"> */}
+        <EventGenre events={this.state.events}/>
+        {/* </div> */}
         <ResponsiveContainer height={400}>
           <ScatterChart
             margin={{top: 20, right: 20, bottom: 10, left: 10, }}
@@ -155,20 +158,6 @@ class App extends Component {
             <Scatter data={this.getData()} fill="#82ca9d" />
           </ScatterChart>
         </ResponsiveContainer>
-        <div className="data-vis-wrapper">
-          <EventGenre events={events}/>
-          <ResponsiveContainer height={400}>
-            <ScatterChart
-              margin={{top: 20, right: 20, bottom: 20, left: 20, }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" type="category" name="name" />
-              <YAxis dataKey="value" type="number" name="value" allowDecimal={false} />
-              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-              <Scatter data={this.getData()} fill="#8884d8" />
-            </ScatterChart>
-            </ResponsiveContainer>
-        </div>
         <EventList events={this.state.events} md={6}/>
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }}/>
         </ThemeProvider>
