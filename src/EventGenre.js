@@ -46,11 +46,11 @@ const EventGenre = ({ events }) => {
         })
         
         return data;
-    }
+    };
     console.log(data);
     console.log(events);
     return (
-        <ResponsiveContainer >
+        <ResponsiveContainer height={400}>
           <PieChart width={400} height={400}>
             <Legend />
             <Pie
