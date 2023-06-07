@@ -32,7 +32,7 @@ render() {
                     )}
                     <br/>
                 <button className="detailsButton" onClick={this.handleDetailsClicked}>
-                    {showDetails ? 'Show Details' : 'Hide Details'}
+                    {showDetails ? 'Hide Details' : 'Show Details'}
                 </button>
             </div> 
            );
