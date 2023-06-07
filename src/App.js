@@ -6,7 +6,7 @@ import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { WarningAlert } from "./Alert";
 import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, Line } from "recharts";
 import EventGenre from "./EventGenre";
 import "./nprogress.css";
 
@@ -78,10 +78,13 @@ class App extends Component {
     const data = locations.map((location) => {
       const number = events.filter((event) => event.location === location).length
       const city = location.split(', ').shift()
-      return {city, number};
-    });
+      if (number !== 0) {
+        return {city, number};
+      } 
     
-    return data;
+    });
+    // const finalData = data.filter(data !== 0 || data !== undefined);
+    return data; //finalData & data.filter function to filter undefined data; afterwards sort by numb
   };
 
   async componentDidMount() {
@@ -129,7 +132,7 @@ class App extends Component {
       <div className="App">
         <h1>meet App</h1>
         <br/> 
-        <WarningAlert text={this.infoText}/>
+        <WarningAlert text={this.infoText}/> 
         <br/>
 
         <h3>City search:</h3>
@@ -152,8 +155,11 @@ class App extends Component {
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="city" type="category" name="city" />
-              <YAxis dataKey="number" type="category" name="number of events" allowDecimal={false} />
+              <YAxis dataKey="number" type="number" name="number of events" allowDecimal={false} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              
+              <Line name="City Names" dataKey="city"/>
+              <Line name="Number of events" dataKey="number"/>
               <Scatter data={this.getData()} fill="#8884d8" />
               <Scatter data={this.getData()} fill="#82ca9d" />
             </ScatterChart>
