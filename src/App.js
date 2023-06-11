@@ -149,6 +149,7 @@ class App extends Component {
         <h3>Events in the city</h3>
         <div className="data-vis-wrapper">
           <EventGenre events={this.state.events}/>
+          {console.log(EventGenre)}
           <ResponsiveContainer height={400}>
             <ScatterChart
               margin={{top: 20, right: 20, bottom: 10, left: 10, }}
@@ -158,8 +159,8 @@ class App extends Component {
               <YAxis dataKey="number" type="number" name="number of events" allowDecimal={false} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
               
-              <Line name="City Names" dataKey="city"/>
-              <Line name="Number of events" dataKey="number"/>
+              {/* <Line name="City Names" dataKey="city"/>
+              <Line name="Number of events" dataKey="number"/> */}
               <Scatter data={this.getData()} fill="#8884d8" />
               <Scatter data={this.getData()} fill="#82ca9d" />
             </ScatterChart>
