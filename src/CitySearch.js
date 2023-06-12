@@ -22,7 +22,7 @@ class CitySearch extends Component {
             if (suggestions.length === 0) {
                 this.setState({
                     query: value,
-                    infoText:"We can't find the cit you are looking for. Please try another city."
+                    infoText:"We can't find the city you are looking for. Please try another city."
                 })
             } else {
                 this.setState({
