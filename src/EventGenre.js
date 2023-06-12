@@ -70,4 +70,4 @@ class EventGenre extends Component {
   }
 }
 
-export { EventGenre };
+export default  EventGenre;
