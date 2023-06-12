@@ -101,10 +101,13 @@ class App extends Component {
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
     if((code || isTokenValid) && this.mounted) {
-      const { eventNumberResult } = this.state;
-      getEvents(eventNumberResult).then((events) => {
+      getEvents().then((events) => {
         if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) })
+          this.setState({ 
+            events: events,
+            locations: extractLocations(events),
+            eventNumberResult: 32
+          })
         }
 
     if (navigator.onLine === false) {
