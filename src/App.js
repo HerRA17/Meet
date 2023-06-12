@@ -80,8 +80,9 @@ class App extends Component {
       const city = location.split(', ').shift()
       if (number !== 0) {
         return {city, number};
-      } 
-    
+      } else {
+        return null
+      }
     });
     // const finalData = data.filter(data !== 0 || data !== undefined);
     return data; //finalData & data.filter function to filter undefined data; afterwards sort by numb
@@ -100,7 +101,8 @@ class App extends Component {
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
     if((code || isTokenValid) && this.mounted) {
-      getEvents().then((events) => {
+      const { eventNumberResult } = this.state;
+      getEvents(eventNumberResult).then((events) => {
         if (this.mounted) {
           this.setState({ events, locations: extractLocations(events) })
         }
