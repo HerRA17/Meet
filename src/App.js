@@ -139,7 +139,7 @@ class App extends Component {
         <br/> 
         <WarningAlert text={this.infoText}/> 
         <br/>
-
+        
         <h3>City search:</h3>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
 
@@ -154,7 +154,6 @@ class App extends Component {
         <h3>Events in the city</h3>
         <div className="data-vis-wrapper">
           <EventGenre events={this.state.events}/>
-          {console.log(EventGenre)}
           <ResponsiveContainer height={400}>
             <ScatterChart
               margin={{top: 20, right: 20, bottom: 10, left: 10, }}
@@ -163,11 +162,7 @@ class App extends Component {
               <XAxis dataKey="city" type="category" name="city" />
               <YAxis dataKey="number" type="number" name="number of events" allowDecimal={false} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-              
-              {/* <Line name="City Names" dataKey="city"/>
-              <Line name="Number of events" dataKey="number"/> */}
               <Scatter data={this.getData()} fill="#8884d8" />
-              <Scatter data={this.getData()} fill="#82ca9d" />
             </ScatterChart>
           </ResponsiveContainer>
         </div>
