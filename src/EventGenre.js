@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
-
+import React, { Component, useEffect, useState } from 'react';
+import { PieChart, Pie, ResponsiveContainer, Legend } from 'recharts';
 
 const EventGenre = ({ events }) => {
     const [data, setData] = useState([]);
@@ -18,7 +17,7 @@ const EventGenre = ({ events }) => {
         
         return data;
     };
-        
+    
     return (
         <ResponsiveContainer height={400}>
           <PieChart width={400} height={400}>
@@ -30,6 +29,7 @@ const EventGenre = ({ events }) => {
               labelLine={false}
               outerRadius={80}
               dataKey="value"
+              fill="D4ADFC"
               label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
             >
             
@@ -38,4 +38,7 @@ const EventGenre = ({ events }) => {
         </ResponsiveContainer>
     );
 }
-     export default EventGenre;
+
+export default EventGenre;
+
+     
