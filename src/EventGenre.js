@@ -6,7 +6,7 @@ const EventGenre = ({ events }) => {
     
     const Colors = ['#0088FE', '#00C49F', '#FF8042', '#D80303', '#D4ADFC']
 
-  useEffect(() => { setData(() => getData()); }, [events]);   // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { setData(() => getData()); }, [events]);   
 
   const getData = () => {
     const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
