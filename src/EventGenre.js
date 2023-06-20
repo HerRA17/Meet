@@ -1,23 +1,31 @@
 import React, { Component, useEffect, useState } from 'react';
-import { PieChart, Pie, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, ResponsiveContainer, Legend, Cell } from 'recharts';
 
 const EventGenre = ({ events }) => {
     const [data, setData] = useState([]);
     
     const Colors = ['#0088FE', '#00C49F', '#ECF8F9', '#D80303', '#D4ADFC']
 
-    useEffect(() => {setData(() => getData()); }, [events]); //have a look at eslint-- exhaustive-deps
+    useEffect(() => {
+      const fetchData = async () => {
+        const newData = await getData();
+        setData(newData);
+      }
+      fetchData();
+    }, [events]); //have a look at eslint-- exhaustive-deps
 
-    const getData = () => {
+    const getData = async () => {
       const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
-      const data = genres.map((genre) => {
+      const newData = await Promise.all(
+        genres.map(async (genre) => {
           const value = events.filter(({ summary }) => summary.split('').includes(genre)).length
           return {name: genre , value};
         })
-        
-        return data;
+      );
+      
+      return newData;
     };
-    
+    console.log(data.value)
     return (
         <ResponsiveContainer height={400}>
           <PieChart width={400} height={400}>
@@ -32,7 +40,9 @@ const EventGenre = ({ events }) => {
               fill="D4ADFC"
               label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
             >
-            
+            {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={Colors[index % Colors.length]} />
+        ))}
            </Pie>
            </PieChart>
         </ResponsiveContainer>
