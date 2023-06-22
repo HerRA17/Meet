@@ -7,11 +7,15 @@
 * [Technologies Used](#technologies_used)
 * [Dependencies](#dependencies)
 * [API](#api)
+* [Google Verification](#google-verification)
 * [Features](#features)
 * [PWA enabled](#pwa_enabled)
 
 ## Overview-
 Meet is a serverless, progressive web application (PWA) that displays events filtered by city and by number of events. It is developed using React, test driven development (TDD) and behavior driven development (BDD) techniques. The application uses the Google Calendar API to fetch events from a sample calendar account. The authorization process is handled by AWS Lambda functions. The app is capable to work offline with cached data.
+The App benefited from FaaS due to the fast & easy Development, that it can be auto-Scalable, and Cost Efficiency. 
+![Screenshot of Meet](/public/Meet.png)
+
 
 ## Links-
 Hosted in Github [page](https://HerRA17.github.io/meet)
@@ -24,7 +28,7 @@ Here are the app key features:
 * Specify number of events.
 * Use the app when offline.
 * Add an app shortcut to the home screen.
-* View a chart showing the number of upcoming events by city.
+* View a chart showing the number of upcoming events by city. 
 
 ## User Stories-
 Key features correspond to the following user stories:
@@ -157,7 +161,10 @@ Then: the app displays a chart that shows the number of upcoming events for each
     }
   }
 ## API-
-Google Calendar API
+Google Calendar API. 
+
+## Google Verification-
+The app is currently undergoing the verification process with Google to allow unrestricted public access. During this verification process, users are advised to exercise caution. However, as the developer (hermann.rasch@gmail.com), I assure you that the app is safe and trustworthy. Please feel free to trust the developer and proceed to use the app with confidence. If you have any concerns or questions, please don't hesitate to reach out to me directly at hermann.rasch@gmail.com. Thank you for your understanding and support.
 
 ## PWA enabled-
 Meet App is fully compliant with the PWA specifications. The app can be installed on desktops and mobile devices and is capable to work offline with cached data.
