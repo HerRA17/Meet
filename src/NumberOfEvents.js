@@ -10,7 +10,8 @@ class NumberOfEvents extends Component{
         }
     }
 
-    handleInputChanged = (eventNumberResult) => {
+    
+    handleInputBlur = (eventNumberResult) => {
         const value = eventNumberResult.target.value; 
         if (value >= 1 || value <= 32) {
         this.setState({
@@ -30,10 +31,10 @@ render() {
             <ErrorAlert text={this.state.infoText}/>
             <input 
             input='number'
-             className='selectedEventNumberResult'
-             value={this.state.eventNumberResult}
-             onChange={this.handleInputChanged}
-             placeholder='Enter the amount of events'/>
+            className='selectedEventNumberResult'
+            value={this.state.eventNumberResult}
+            onBlur={this.handleInputBlur}
+            placeholder='Enter the amount of events'/>
         </div>
     )
 }
