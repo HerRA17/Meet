@@ -11,7 +11,7 @@ class NumberOfEvents extends Component{
     }
 
     
-    handleInputBlur = (eventNumberResult) => {
+    handleInputChanged = (eventNumberResult) => {
         const value = eventNumberResult.target.value; 
         if (value >= 1 || value <= 32) {
         this.setState({
@@ -33,7 +33,7 @@ render() {
             input='number'
             className='selectedEventNumberResult'
             value={this.state.eventNumberResult}
-            onBlur={this.handleInputBlur}
+            onChange={this.handleInputChanged}
             placeholder='Enter the amount of events'/>
         </div>
     )
