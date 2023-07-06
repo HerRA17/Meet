@@ -84,8 +84,8 @@ class App extends Component {
         return null
       }
     });
-    // const finalData = data.filter(data !== 0 || data !== undefined);
-    return data; //finalData & data.filter function to filter undefined data; afterwards sort by numb
+    
+    return data; 
   };
 
   async componentDidMount() {
