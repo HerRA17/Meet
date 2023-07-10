@@ -33,7 +33,7 @@ render() {
             input='number'
             className='selectedEventNumberResult'
             value={this.state.eventNumberResult}
-            onChange={this.handleInputChanged}
+            onBlur={this.handleInputChanged}
             placeholder='Enter the amount of events'/>
         </div>
     )
