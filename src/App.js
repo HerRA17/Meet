@@ -6,7 +6,7 @@ import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { WarningAlert } from "./Alert";
 import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, Line } from "recharts";
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import EventGenre from "./EventGenre";
 import "./nprogress.css";
 
@@ -24,7 +24,7 @@ class App extends Component {
     showWelcomeScreen: undefined
   } 
 }
-
+// update event function with conditions on how to respond
   updateEvents = (location, eventNumberResult) => {
     
     if (!eventNumberResult) {
