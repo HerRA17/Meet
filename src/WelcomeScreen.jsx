@@ -15,7 +15,7 @@ function WelcomeScreen(props) {
             </h4>
             <div className="button_cont" align="center">
                 <div className="google-btn">
-                    <div class="google-icon-wrapper">
+                    <div className="google-icon-wrapper">
                     <img
                     className="google-icon"
                     src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Log
