@@ -10,6 +10,7 @@
 * [Google Verification](#google-verification)
 * [Features](#features)
 * [PWA enabled](#pwa_enabled)
+* [Credits](#credits)
 
 ## Overview-
 Meet is a serverless, progressive web application (PWA) that displays events filtered by city and by number of events. It is developed using React, test driven development (TDD) and behavior driven development (BDD) techniques. The application uses the Google Calendar API to fetch events from a sample calendar account. The authorization process is handled by AWS Lambda functions. The app is capable to work offline with cached data.
@@ -168,3 +169,7 @@ The app is currently undergoing the verification process with Google to allow un
 
 ## PWA enabled-
 Meet App is fully compliant with the PWA specifications. The app can be installed on desktops and mobile devices and is capable to work offline with cached data.
+
+## Credits
+Tutor: Adewunmi bamishigbin
+Mentor: Joel Cross
