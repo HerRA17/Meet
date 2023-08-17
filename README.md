@@ -12,15 +12,17 @@
 * [PWA enabled](#pwa_enabled)
 * [Credits](#credits)
 
+<a id="overview"></a>
 ## Overview-
 Meet is a serverless, progressive web application (PWA) that displays events filtered by city and by number of events. It is developed using React, test driven development (TDD) and behavior driven development (BDD) techniques. The application uses the Google Calendar API to fetch events from a sample calendar account. The authorization process is handled by AWS Lambda functions. The app is capable to work offline with cached data.
 The App benefited from FaaS due to the fast & easy Development, that it can be auto-Scalable, and Cost Efficiency. 
 ![Screenshot of Meet](/public/Meet.png)
 
-
+<a id="links"></a>
 ## Links-
 Hosted in Github [page](https://HerRA17.github.io/meet)
 
+<a id="key_features"></a>
 ## Key Features-
 Here are the app key features:
 
@@ -31,6 +33,7 @@ Here are the app key features:
 * Add an app shortcut to the home screen.
 * View a chart showing the number of upcoming events by city. 
 
+<a id="user_stories"></a>
 ## User Stories-
 Key features correspond to the following user stories:
 
@@ -41,6 +44,7 @@ Key features correspond to the following user stories:
 5. As a user, I would like to be able to add the app shortcut to the home screen, so I can open the app faster.
 6. As a user, I would like to be able to see a chart showing the upcoming events in each city, so I know which events are organised in each city
 
+<a id="scenarios"></a>
 ## Scanarios-
 ### Feature 1 - Filter events by city
 
@@ -108,6 +112,7 @@ Given: the app is closed
 When: the user opens the app
 Then: the app displays a chart that shows the number of upcoming events for each city reflecting data fetched by the API
 
+<a id="technologies_used"></a>
 ## Technologies Used-
 **Frontend**
 * Javascript/React
@@ -117,6 +122,7 @@ Then: the app displays a chart that shows the number of upcoming events for each
 * Node/Express as Lambda functions (FaaS)
 * hosted on AWS
 
+<a id="dependencies"></a>
 ## Dependencies-
 * "dependencies": {
   *  "@testing-library/jest-dom": "^5.16.2",
@@ -161,15 +167,20 @@ Then: the app displays a chart that shows the number of upcoming events for each
     *  "axios": "axios/dist/node/axios.cjs"
     }
   }
+
+<a id="api"></a>
 ## API-
 Google Calendar API. 
 
+<a id="google-verification"></a>
 ## Google Verification-
 The app is currently undergoing the verification process with Google to allow unrestricted public access. During this verification process, users are advised to exercise caution. However, as the developer (hermann.rasch@gmail.com), I assure you that the app is safe and trustworthy. Please feel free to trust the developer and proceed to use the app with confidence. If you have any concerns or questions, please don't hesitate to reach out to me directly at hermann.rasch@gmail.com. Thank you for your understanding and support.
 
+<a id="pwa_enabled"></a>
 ## PWA enabled-
 Meet App is fully compliant with the PWA specifications. The app can be installed on desktops and mobile devices and is capable to work offline with cached data.
 
+<a id="credits"></a>
 ## Credits
 Tutor: Adewunmi bamishigbin
 Mentor: Joel Cross
