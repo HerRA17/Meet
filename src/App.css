@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: #FAEBD7;
-  color: #000;
+  color: #3200A8;
   padding: 2% 5%;
   flex-grow: 2;
   flex-shrink: 1;
@@ -104,15 +104,13 @@ input[type="number"] {
 .detailsButton {
   display: flex;
   position: relative;
-  left: 5px;
-  bottom: 5px;
   padding: 5px 8px;
   border-radius: 4px;
   border-color: #3200A8;
   outline: none;
   cursor: pointer;
-  background-color: transparent;
-  color: #3200A8;
+  background-color: #3200A8;
+  color: #FAEBD7;
 }
 
 .name {
@@ -158,6 +156,8 @@ input[type="number"] {
   min-width: 100%;
   display: flex;
 }
+
+
 .recharts-surface {
   overflow: visible;
 }
@@ -172,5 +172,16 @@ input[type="number"] {
     max-width: 50%;
     min-width: auto;
     margin: 0 auto;
+  }
+  ul{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: max-content;
+    grid-gap: 25px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .data-vis-wrapper {
+    margin-bottom: 25px;
   }
 }

@@ -153,7 +153,7 @@ class App extends Component {
 
         <h3>Events in the city</h3>
         <div className="data-vis-wrapper">
-          <EventGenre events={this.state.events}/>
+          <EventGenre events={this.state.events} className="piechart"/>
           <ResponsiveContainer height={400}>
             <ScatterChart
               margin={{top: 20, right: 20, bottom: 10, left: 10, }}
